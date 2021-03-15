@@ -1,4 +1,4 @@
-package executar;
+package execucao;
 
 import java.util.Scanner;
 
@@ -13,7 +13,8 @@ public class Aplicacao {
         System.out.println("3 - Depositar em Conta");
         System.out.println("4 - Saque em Conta");
         System.out.println("5 - Desativar Conta");
-        System.out.println("6 - para Sair");
+        System.out.println("6 - Render");
+        System.out.println("10 - para Sair");
     }
 
     public static void main(String[] args) {
@@ -26,13 +27,22 @@ public class Aplicacao {
         System.out.print("->");
         opcao = s.nextInt();
 
-        while (opcao != 5) {
+        while (opcao != 10) {
             switch (opcao) {
                 case 1:
                     // Criar Conta
-                    System.out.println("Conta sendo criada");
-                    int numeroDaConta = bancoCat.criarConta();
-                    System.out.println("Conta criada com o seguinte número: " + numeroDaConta);
+                    System.out.println("Deseja criar Conta Corrente (digite 1)");
+                    System.out.println("Deseja criar Poupanca (digite 2)");
+                    int contaOpcao = s.nextInt();
+                    if ( contaOpcao == 1){
+                        int numeroDaConta = bancoCat.criarConta();
+                        System.out.println("Conta criada com o seguinte número: " + numeroDaConta);
+                    } else if (contaOpcao == 2){
+                        int numeroDaConta = bancoCat.criarContaPoupanca();
+                        System.out.println("Conta criada com o seguinte número: " + numeroDaConta);
+                    } else {
+                        System.out.println("Opcao Inválida");
+                    }
                     break;
                 case 2:
                     // Consultar Saldo
@@ -69,8 +79,12 @@ public class Aplicacao {
                         System.out.println("Ñao foi possível realizar o saque");
                     }
                     break;
-                case 5:
-                    // Desativar
+                case 6:
+                    // Render
+                    System.out.println("Qual o número da Poupanca que deseja render?");    
+                    System.out.print("->");
+                    int numContaPoup = s.nextInt();
+                    bancoCat.render(numContaPoup);
                     break;
                 default:
                     System.out.println("Ainda não implementado");

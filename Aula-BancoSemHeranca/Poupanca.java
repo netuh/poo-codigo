@@ -1,11 +1,10 @@
-package logica;
-
-public class Conta {
-
+public class Poupanca {
     private float saldo;
+    private float redimentoTotal;
 
-    public Conta (){
-        saldo = 0;
+    public Poupanca (){
+        saldo = 100;
+        redimentoTotal =0;
     }
 
     public void depositar(float valor) {
@@ -24,5 +23,10 @@ public class Conta {
         }
         return false;
     }
-    
+
+    public void render(){
+        float redimento = saldo *0.01f;
+        redimentoTotal = redimentoTotal + redimento;
+        saldo = saldo + redimento;
+    }
 }
